@@ -1,0 +1,700 @@
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-color: #212121;
+  font-family: sans-serif;
+  color: white;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+#bg-video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: #181818;
+}
+#bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;        /* 画面幅に合わせる */
+  height: 100%;       /* 画面高さに合わせる */
+  object-fit: cover;  /* アスペクト比維持して全画面表示 */
+  transform: translate(-50%, -50%);
+  filter: contrast(0.9) brightness(0.8) saturate(0.7);
+  opacity: 0;
+  transition: opacity 2.2s ease;
+}
+#bg-video::-webkit-media-controls-start-playback-button,
+#bg-video::-webkit-media-controls {
+  display: none !important;
+}
+#bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 80%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  filter: contrast(0.9) brightness(0.8) saturate(0.7);
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+#bg-video-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(-45deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 2px,
+      transparent 4px);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.title-bar {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  height: 2.4rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 1.2rem;
+  background-color: #1a1a1a;
+  border-bottom: 0.1px solid black;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.title {
+  text-align: left;
+  font-size: 1.2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0rem;
+  margin-top: env(safe-area-inset-top, 1.5rem);
+  color: #fff;
+  font-style: italic;
+  font-weight: bold;
+  opacity: 75%;
+  white-space: nowrap;
+}
+.bottom-title {
+  height: 2.4rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  background-color: #1a1a1a;
+  border-top: 0.1px solid #333;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.wrapper0 {
+  display: flex;
+  flex: 1;
+  margin: 0 24px;
+}
+.wrapper1 {
+  width: auto;
+  top: 18px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.wrapper2 {
+  height: 100vh;
+  width: 50%;
+  align-items: center;
+  margin-left: 0px;
+}
+
+.container {
+  flex-shrink: 1;
+}
+
+.pool-window {
+  max-width: 0;
+  margin: 0 0px 0 0;
+  overflow: hidden;
+  transform: rotateY(90deg);
+  /* GPU レイヤー作成で滑らかに */
+  will-change: transform, max-width;
+}
+.pool-window.opening {
+  animation: openAnim 1.3s ease forwards;
+}
+.pool-window.closing {
+  animation: closeAnim 0.8s ease forwards;
+}
+
+@keyframes openAnim {
+  0% {
+    max-width: 0;
+    transform: rotateY(90deg);
+  }
+  100% {
+    max-width: 200px;
+    transform: rotateY(0deg);
+  }
+}
+@keyframes closeAnim {
+  0% {
+    max-width: 200px;
+    transform: rotateY(0deg);
+  }
+  100% {
+    max-width: 0;
+    transform: rotateY(90deg);
+  }
+}
+
+.pool-window table {
+  width: 100%;           /* 親に合わせる */
+  transform-origin: left center;
+  /* 親ウインドウの transform に追従 */
+  will-change: transform;
+}
+.pool-window {
+  margin: 0px 0px 0px 0px;
+  max-width: 0;
+  overflow: hidden;
+  transform: rotateY(90deg);
+  transition: all 1.5s ease;
+}
+.pool-window.show {
+  margin: 0px 0px 0px 0px;
+  max-width: 300px;
+  transform: rotateY(0deg);
+}
+
+#poolWindow5 table,
+#poolWindow2 table,
+#poolWindow3 table {
+  max-width: 500px;
+}
+
+#poolWindow5 table th,
+#poolWindow2 table th,
+#poolWindow3 table th {
+  height: 19px;
+}
+
+#container1 {
+  margin: 0px 0px 0px 36px;
+}
+#container1 table td:first-child {
+  padding: 0px 0px 0px 24px;
+  width: 120px;
+}
+#container1 table td:last-child {
+  width: 90px;
+}
+
+#container2 table td,
+#container3 table td {
+  width: 90px;
+}
+
+#poolWindow5 table th,
+#poolWindow2 table th,
+#poolWindow3 table th {
+  height: 19px;
+}
+
+#poolWindow5 table td,
+#poolWindow2 table td,
+#poolWindow3 table td {
+  height: 38px;
+}
+
+#container4 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+}
+.controller-image-wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  padding: 0 0 36px 0;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+#controllerSvg {
+  position: absolute;
+  justify-content: end;
+  align-items: end;
+  width: auto;
+  height: 80%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.status-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: -45px;
+}
+
+/* ---------portrait----------- */
+/* ---------portrait----------- */
+/* ---------portrait----------- */
+/* ---------portrait----------- */
+/* ---------portrait----------- */
+
+@media (orientation: portrait) {
+  .wrapper0 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 0px;
+  }
+  
+  .wrapper1 {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+  }
+  
+  .wrapper2 {
+    width: 100%;
+    max-width: 100%;
+  }
+  .controller-image-wrapper {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    margin: 0 0 36px 0px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+}
+  #controllerSvg {
+    position: absolute;
+    width: 90%;
+    height: auto;
+    z-index: 10;
+}
+  #container1 table td:first-child {
+    padding: 0px 0px 0px 12px;
+    min-width: 80px;
+  }
+  
+  #container1 table td:last-child {
+    min-width: 80px;
+  }
+  
+  #container2 table td,
+  #container3 table td {
+    min-width: 40px;
+  }
+  
+  #container1,
+  #container3 {
+    margin: 0px 0px 0px 0px;
+}
+  .status-box {
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+  }
+  /* 親ウインドウのアニメーションはそのまま */
+  .pool-window {
+    max-width: 0;
+    margin: 0 0 0 0;
+    overflow: hidden;
+    transform: rotateY(90deg);
+    /* GPU レイヤー作成で滑らかに */
+    will-change: transform, max-width;
+  }
+  
+  /* 開くとき */
+  .pool-window.opening {
+    animation: openAnim 1.3s ease forwards;
+  }
+  
+  /* 閉じるとき */
+  .pool-window.closing {
+    animation: closeAnim 0.8s ease forwards;
+  }
+  
+  /* キーフレーム */
+  @keyframes openAnim {
+    0% {
+      max-width: 0;
+      transform: rotateY(90deg);
+    }
+    100% {
+      max-width: 300px;
+      transform: rotateY(0deg);
+    }
+  }
+  
+  @keyframes closeAnim {
+    0% {
+      max-width: 300px;
+      transform: rotateY(0deg);
+    }
+    100% {
+      max-width: 0;
+      transform: rotateY(90deg);
+    }
+  }
+  
+  /* テーブルを親ウインドウに追従させる */
+  .pool-window table {
+    width: 100%;           /* 親に合わせる */
+    transform-origin: left center;
+    /* 親ウインドウの transform に追従 */
+    will-change: transform;
+  }
+    #container4 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 50;
+    align-items: center;
+    margin-bottom: -45px;
+    
+  }
+  .menu-box {
+    display: flex;
+    flex-direction: row;
+    min-height: 0;
+    padding: 0 72px;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .menu-box {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    margin: 30px 0px 0 0px;
+    white-space: nowrap;
+    justify-content: space-between;
+    gap: 8px;
+    z-index: 300;
+  }
+  p.text-message {
+  bottom: 100px;
+  }
+  .connected {
+  bottom: 100px !important;
+  }
+}
+
+.table-box,
+.menu-box {
+  display: flex;
+  flex-direction: row;
+  min-height: 0;
+  margin: 0 auto;
+}
+.menu-box {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  margin: 30px 0px 0 0px;
+  white-space: nowrap;
+  justify-content: space-between;
+  gap: 8px;
+  z-index: 300;
+}
+.right-btn {
+  display: flex;
+  gap: 8px;
+}
+
+#setDefaultBtn,
+#loadBtn,
+#saveBtn {
+  display: flex;
+  padding: 0.3rem 0.8rem;
+  background: #001;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  z-index: 350;
+}
+
+#container1,
+#container2,
+#container3,
+#poolWindow5.show,
+#poolWindow2,
+#poolWindow3 {
+  height: 100%;
+  margin: 0 0px 0 0px;
+}
+
+.container-title {
+  margin: 5px 10px;
+  padding: 0;
+  font-size: 0.5rem;
+  font-weight: bold;
+  text-align: left;
+  opacity: 70%;
+}
+
+.command-monitor {
+  position: absolute;
+  top: 18px;
+  /* 元インラインの top:0 を優先 */
+  left: 50%;
+  transform: translateX(-50%);
+  /* 元インラインを優先 */
+  display: none;
+  color: white;
+  font-size: 2.2rem;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 1.0);
+  /* rgba(0,0,0,0.6) に統一 */
+  padding: 4px 8px;
+  /* 元々のCSSの値を使用 */
+  border-radius: 4px;
+  /* 元CSSの値を使用 */
+  z-index: 9999;
+  /* 元インラインのz-indexを追加 */
+  pointer-events: none;
+  white-space: nowrap;
+  text-align: center;
+}
+.command-item {
+  background: rgba(100, 0, 0, 1.0);
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin: 4px 0;
+  color: white;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+p.text-message {
+  position: absolute;
+  bottom: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 200px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  z-index: 350;
+}
+.text-message {
+  text-align: center;
+  font-size: 0.6rem;
+  padding-top: 0px;
+  bottom: 40%;
+}
+.text-message {
+  color: #ebebeb;
+  animation: pulse 1.5s infinite;
+  text-align: center;
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute; /* または fixed で画面中央下に表示したい場合 */
+  bottom: 40%;      /* 中央に置く場合 */
+  z-index: 350;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes bounce {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+  
+  60% {
+    transform: translateX(-50%) scale(1.3);
+  }
+  
+  100% {
+    transform: translateX(-50%) scale(1.2);
+  }
+}
+.connected {
+  color: #c9fb12;
+  animation: bounce 0.4s ease forwards;
+  transform: translateX(-50%) scale(1);
+  position: absolute;
+  left: 50%;
+}
+
+table {
+  border-collapse: collapse;
+  flex: 1;
+}
+th,
+td {
+  padding: 0rem 0rem 0.0rem 0rem;
+  font-size: 0.8rem;
+  word-wrap: break-word;
+  height: 19px;
+  min-width: 60px;
+  min-height: 0.8rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#container1 th,
+#container1 td,
+#container2 th,
+#container2 td,
+#container3 th,
+#container3 td {
+  opacity: 80%;
+}
+
+#container1 th {
+  background-color: #070707;
+  color: #33ffcc;
+}
+#container1 td {
+  background: #000c09;
+  border: 0.5px solid, #33ffcc;
+}
+#container2 th {
+  background-color: #0c0900;
+  color: #ffcc33;
+}
+#container2 td {
+  background-color: #0c0900;
+  border: 0.5px solid #d09c00;
+}
+#container3 th {
+  background-color: #0c0900;
+  color: #ff0014;
+}
+#container3 td {
+  background-color: #0c0900;
+  border: 0.5px solid #ff1600;
+}
+#poolWindow5 th {
+  color: #cc33ff;
+}
+#poolWindow5 td {
+  border: 0.5px solid #df80ff;
+}
+#poolWindow2 th {
+  color: #ffcc33;
+}
+#poolWindow2 td {
+  border: 0.5px solid #ffcc33;
+}
+#poolWindow3 th {
+  color: #ff0100;
+}
+#poolWindow3 td {
+  border: 0.5px solid #ff1600;
+}
+
+#poolWindow5.show table td {
+  background: #0c0003;
+}
+#poolWindow2.show table td {
+  background: #0c0c00;
+}
+#poolWindow3.show table td {
+  background: #0c0c00;
+}
+.column-label {
+  font-weight: bold;
+  text-align: center;
+}
+
+.titillium-web-extralight {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+.titillium-web-light {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.titillium-web-regular {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.titillium-web-semibold {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+.titillium-web-bold {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.titillium-web-black {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+.titillium-web-extralight-italic {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+.titillium-web-light-italic {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+.titillium-web-regular-italic {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+.titillium-web-semibold-italic {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+.titillium-web-bold-italic {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}

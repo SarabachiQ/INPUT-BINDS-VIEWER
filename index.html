@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOMPETE | Bind and Keymap Checker</title>
+  <link rel="stylesheet" href="style_85_LAYOUT-ID.css">
+  <link rel="stylesheet" href="style_85_ACTION-AUTO.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="style_85_LAYOUT-ID">
+</head>
+<body class="mode-xbox">
+  <div class="title-bar">
+  <div class="progress-fill"></div>
+  <div id="bg-video-container">
+  <video id="bg-video" autoplay muted playsinline ></video>
+  </div>
+  <h1 class="title">KOMPETE&nbsp;&nbsp;|&nbsp;&nbsp;Bind and Keymap Checker</h1>
+    <div class="mode-btn">
+      <button onclick="setMode('modeXbox')">X</button>
+      <button onclick="setMode('modePlaystation')">P</button>
+      <button onclick="setMode('modeSwitch')">S</button>
+    </div>
+  <span class="progress-text"></span>
+</div>
+  <div class="wrapper0">
+    <div class="wrapper1">
+      <div class="table-box">
+      <div id="container1" class="container">
+          <table class="game-table" id="gameTable">
+            <thead>
+              <tr class="column-label">
+                <th>Binds</th>
+                <th>▲</th>
+              </tr>
+            </thead>
+            <tbody id="gameBody"></tbody>
+          </table>
+        </div>
+      <div id="container2" class="container">
+          <table class="keymap-table2" id="keymapTable2">
+            <thead>
+              <tr class="column-label">
+                <th>to</th>
+                <th>Swap</th>
+              </tr>
+            </thead>
+            <tbody id="keymapBody2"></tbody>
+          </table>
+        </div>
+      <div id="container3" class="container">
+          <table class="keymap-table3" id="keymapTable3">
+            <thead>
+              <tr class="column-label">
+                <th>with</th>
+              </tr>
+            </thead>
+            <tbody id="keymapBody3"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="menu-box">
+          <div class="left-btn">
+            <button id="setDefaultBtn" class="set-to-default">« Set to default</button>
+          </div>
+          <div class="right-btn">
+            <button id="loadBtn" onclick="loadLayout()">LOAD</button>
+            <button id="saveBtn" onclick="saveLayout()">SAVE</button>
+          </div>
+      </div>
+    </div>
+    <div class="wrapper2">
+      <div id="container4" class="container">
+        <div class="controller-image-wrapper">
+          <object id="controllerSvg" type="image/svg+xml" data="image/controller-33.svg"></object>
+          <div id="commandMonitor" class="command-monitor"></div>
+          <div class="status-box">
+            <p id="status" class="text-message">Waiting for connection…</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      <!-- game 用のプール領域 -->
+      <section id="poolWindow5" class="pool-window">
+        <table id="gameBtn" class="game-btn">
+          <thead>
+            <tr><th colspan="4">
+              <div class="close-btn5" onclick="closePoolWindow()">
+                ✕
+              </div>
+            </th></tr>
+          </thead>
+          <tbody id="btnGamePool"></tbody>
+        </table>
+      </section>
+      <!-- keymap2 用のプール領域 -->
+      <section id="poolWindow2" class="pool-window">
+        <table id="keymapBtn2" class="keymap-btn">
+          <thead>
+            <tr><th colspan="4">
+              <div class="close-btn2" onclick="closePoolWindow()">
+                ✕
+              </div>
+            </th></tr>
+          </thead>
+          <tbody id="btnKeymapPool2"></tbody>
+        </table>
+      </section>
+      <!-- keymap3 用のプール領域（新規） -->
+      <section id="poolWindow3" class="pool-window">
+        <table id="keymapBtn3" class="keymap-btn">
+          <thead>
+            <tr><th colspan="4">
+              <div class="close-btn3" onclick="closePoolWindow()">
+                ✕
+              </div>
+            </th></tr>
+          </thead>
+          <tbody id="btnKeymapPool3"></tbody>
+        </table>
+      </section>
+    <div>
+        <div class="bottom-title"></div>
+    </div>
+  <div id="log"></div>
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>
+    eruda.init();</script>
+  <script src="script85.js"></script>
+  <script>console.log("スクリプト読み込みました");</script>
+</body>
+</html>
